@@ -3,36 +3,42 @@ from flask import Flask, jsonify, request   # type: ignore
 from flask_sqlalchemy import SQLAlchemy # type: ignore
 from flask_marshmallow import Marshmallow # type: ignore
 from flask_migrate import Migrate # type: ignore
-from marshmallow import fields # type: ignore
+#from marshmallow import fields # type: ignore
 
 
 # ============================ Configuración BBDD =================================
 # Para configurar una base de datos en Flask, necesitarás seguir algunos pasos básicos
 
+# Configuración de la aplicación Flask
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+# Inicialización de la base de datos y el esquema Marshmallow
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 migrate = Migrate(app, db)
 
 
-# Modelo de Empleado:
+# Modelo Empleado:
 class Empleado(db.Model):
+    """Modelo para representar a un empleado."""
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
     correo_electronico = db.Column(db.String(100), unique=True, nullable=False)
 
     def __init__(self, nombre, correo_electronico):
+        """Inicializa una nueva instancia de Empleado."""
         self.nombre = nombre
         self.correo_electronico = correo_electronico
 
 class EmpleadoSchema(ma.Schema):
+    """Esquema para serializar y deserializar objetos Empleado."""
     class Meta:
+        """Metadatos del esquema."""
         fields = ('id', 'nombre', 'correo_electronico')
 
-# Crea una instancia del esquema de Empleado
+# Crea instancias del esquema de Empleado
 empleado_schema = EmpleadoSchema()
 empleados_schema = EmpleadoSchema(many=True)
 
@@ -40,6 +46,7 @@ empleados_schema = EmpleadoSchema(many=True)
 
 # Modelo de Propiedad:
 class Propiedad(db.Model):
+    """Modelo para representar una propiedad."""
     id = db.Column(db.Integer, primary_key=True)
     direccion = db.Column(db.String(200), nullable=False)
     ubicacion = db.Column(db.String(100))
@@ -47,15 +54,19 @@ class Propiedad(db.Model):
     descripcion = db.Column(db.Text)
 
     def __init__(self, direccion, ubicacion,precio,descripcion):
+        """Inicializa una nueva instancia de Propiedad."""
         self.direccion = direccion
         self.ubicacion = ubicacion
         self.precio = precio
         self.descripcion = descripcion
 
 class PropiedadSchema(ma.Schema):
+    """Esquema para serializar y deserializar objetos Propiedad."""
     class Meta:
+        """Metadatos del esquema."""
         fields = ('id', 'direccion', 'ubicacion','precio','descripcion')
 
+# Instancias de esquemas de Propiedad
 propiedad_schema = PropiedadSchema()
 propiedades_schema = PropiedadSchema(many=True)
 
@@ -63,6 +74,7 @@ propiedades_schema = PropiedadSchema(many=True)
 
 # Modelo de Visita a la Propiedad:
 class Visita(db.Model):
+    """Modelo para representar una visita a una propiedad."""
     id = db.Column(db.Integer, primary_key=True)
     empleado_id = db.Column(db.Integer, db.ForeignKey('empleado.id'), nullable=False)
     propiedad_id = db.Column(db.Integer, db.ForeignKey('propiedad.id'), nullable=False)
@@ -73,15 +85,20 @@ class Visita(db.Model):
     propiedad = db.relationship('Propiedad', backref='visitas')
 
     def __init__(self, empleado_id, propiedad_id,comentario):
+        """Inicializa una nueva instancia de Visita."""
         self.empleado_id = empleado_id
         self.propiedad_id = propiedad_id
         #self.fecha_hora_visita = fecha_hora_visita
         self.comentario = comentario
 
 class VisitaSchema(ma.Schema):
+    """Esquema para serializar y deserializar objetos Visita."""
+
     class Meta:
+        """Metadatos del esquema."""
         fields = ('id', 'empleado_id', 'propiedad_id','fecha_hora_visita','comentario')
 
+# Instancias de esquemas de Visita
 visita_schema = VisitaSchema()
 visitas_schema = VisitaSchema(many=True)
 
