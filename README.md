@@ -2,16 +2,16 @@ Este código define un conjunto de endpoints de una API para manejar operaciones
 
 Crear un nuevo empleado:
 
-Método: POST
-Ruta: /empleados
-Parámetros JSON requeridos:
-nombre (str): Nombre del empleado.
-correo_electronico (str): Correo electrónico del empleado.
-Descripción: Crea un nuevo empleado con el nombre y correo electrónico proporcionados en el cuerpo de la solicitud.
-Respuesta exitosa:
-Retorna los datos del nuevo empleado en formato JSON.
-Ejemplo de uso: POST http://127.0.0.1:5000/empleados
-Obtener todos los empleados:
+    Método: POST
+    Ruta: /empleados
+    Parámetros JSON requeridos:
+    nombre (str): Nombre del empleado.
+    correo_electronico (str): Correo electrónico del empleado.
+    Descripción: Crea un nuevo empleado con el nombre y correo electrónico proporcionados en el cuerpo de la solicitud.
+    Respuesta exitosa:
+    Retorna los datos del nuevo empleado en formato JSON.
+    Ejemplo de uso: POST http://127.0.0.1:5000/empleados
+    Obtener todos los empleados:
 
 Método: GET
 Ruta: /empleados
