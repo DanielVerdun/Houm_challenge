@@ -17,8 +17,38 @@ Activar entorno:
 
 Clonar repositorio:
 
+    git clone git@github.com:DanielVerdun/Houm_challenge.git
+
+Ingresa al directorio del proyecto:
+
+    cd Houm 
+
+Cambiar a branch master: 
+    
+    git checkout master
+
+Instala las dependencias: 
+    
+    pip3 install -r requirements.txt
+
+Crear BBDD:
+
+    flask db init
+
+Ejecutar migraciones:
+
+    flask db migrate -m "Initial migration."
+
+Actualizar BBDD:
+
+    flask db migrate -m "Initial migration."
+
+Ejecutar APP:
+
+    flask run
 
 
+## -------------------------------------------------------------------------------------
 
 Este código define un conjunto de endpoints de una API para manejar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) sobre la entidad "Empleado". Aquí está la documentación para cada endpoint:
 
