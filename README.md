@@ -11,9 +11,13 @@ Crear un nuevo empleado:
     Respuesta exitosa:
     Retorna los datos del nuevo empleado en formato JSON.
     Ejemplo de uso: POST http://127.0.0.1:5000/empleados
-    Obtener todos los empleados:
+   
+    {
+      "nombre":"empleado1",
+      "correo_electronico":"empleado1@gmail.com"
+    }
 
-Listar empleados:
+Obtener todos los empleados:
 
     Método: GET
     Ruta: /empleados
@@ -41,12 +45,17 @@ Actualizar un empleado:
     Parámetros de ruta:
         id (int): ID del empleado que se desea actualizar.
     Parámetros JSON requeridos:
-    nombre (str): Nuevo nombre del empleado.
-    correo_electronico (str): Nuevo correo electrónico del empleado.
+        nombre (str): Nuevo nombre del empleado.
+        correo_electronico (str): Nuevo correo electrónico del empleado.
     Descripción: Actualiza los datos de un empleado existente mediante su ID.
     Respuesta exitosa:
     Retorna los datos del empleado actualizado en formato JSON.
     Ejemplo de uso: PUT http://127.0.0.1:5000/empleados/1
+    
+    {
+      "nombre":"Carlos",
+      "correo_electronico":"empleado1@gmail.com"
+    }
     
 Eliminar un empleado:
 
