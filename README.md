@@ -1,3 +1,25 @@
+## Medo de ejecución local
+Crear un directorio local
+    
+    mkdir test_repo
+
+Ingresar al directorio:
+
+    cd test_repo
+
+Crear un etorno virtual:
+
+    python3 -m venv env
+
+Activar entorno:
+
+    source env/bin/activate
+
+Clonar repositorio:
+
+
+
+
 Este código define un conjunto de endpoints de una API para manejar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) sobre la entidad "Empleado". Aquí está la documentación para cada endpoint:
 
 ## Empleados
